@@ -69,6 +69,9 @@ body {
 .InputNumberField {
   width: 100%;
 }
+.table-container {
+  width: 80%;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
