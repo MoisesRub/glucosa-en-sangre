@@ -18,7 +18,7 @@ function App() {
       dataIndex: 'FECHA',
       key: 'FECHA',
       sorter: (a, b) => new Date(b.FECHA) - new Date(a.FECHA), // Sort by date in descending order
-   
+     
     },
     {
       title: 'Nombre',
