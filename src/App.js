@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
+import 'antd/dist/reset.css';
 
 
 function App() {
@@ -14,31 +15,40 @@ function App() {
     setFormData({ ...formData, [name]: value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await fetch('https://glucosasangre.000webhostapp.com/glucosa_api.php', {
+      const url = 'https://glucosasangre.000webhostapp.com/glucosa_api.php';
+      const formDataEncoded = new URLSearchParams();
+  
+      for (const key in formData) {
+        formDataEncoded.append(key, formData[key]);
+      }
+  
+      formDataEncoded.append('command', 'read');
+  
+      const response = await fetch(url, {
         method: 'POST',
-         mode:'cors'
-        ,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          ...formData,
-          command: 'read'
-        }),
+        mode: 'cors',
+        body: formDataEncoded.toString(),
       });
-
+  
       const data = await response.json();
       setApiResponse(data);
-
+  
       console.log(data);
     } catch (error) {
       console.error('Error:', error);
     }
   };
+  
+
+
 
   return (
     <div className="App">
