@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, InputNumber, Button, Table } from 'antd';
+import { Form, Input, InputNumber, Button, Table , Card } from 'antd';
 import 'antd/dist/reset.css';
 import './App.css';
 import Chart from 'chart.js/auto'; // Import Chart.js
@@ -104,6 +104,7 @@ function App() {
                 display: true,
                 text: 'Fecha',
               },
+              reverse: true, // Set to true for ascending order, false for descending
             },
             y: {
               beginAtZero: true,
@@ -120,10 +121,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+     
         <h1>Sistema de medición de glucosa en Sangre</h1>
         {showForm && (
-          <div>
+          <>
         <p>Añada su nivel de glucosa actual para poder ver su 
           historial</p>
 
@@ -151,27 +152,35 @@ function App() {
               Registrar
             </Button>
           </Form.Item>
-        </Form> </div> )}
+        </Form> </> )}
         {apiResponse && (
-          <div>
-                        <div>
+        
+
+         
+          < >
+                        
               <h3>Histograma de Niveles de Glucosa</h3>
-              <canvas id="histogramChart" width="400" height="200"></canvas>
-            </div>
+              <canvas id="histogramChart" width="100" height="50"></canvas>
+            
             <h3>Historial de días</h3>
             <div className="table-container">
-              <Table
-                dataSource={apiResponse}
-                columns={columns}
-                rowKey={(record) => record.ID_REGISTRO} // Ensure each row has a unique key
-                pagination={{ pageSize: 10 }} // Customize pagination as needed
-              />
-            </div>
-
-
+            
+          <Table
+            dataSource={apiResponse}
+            columns={columns}
+            rowKey={(record) => record.ID_REGISTRO}
+            pagination={{ pageSize: 10 }}
+          />
+     
           </div>
+        
+        </>
+       
+
+         
+
         )}
-      </header>
+     
     </div>
   );
 }
