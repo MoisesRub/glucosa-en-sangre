@@ -34,7 +34,7 @@ function HistoryPage() {
         key: 'FECHA',
         sorter: (a, b) => new Date(b.FECHA) - new Date(a.FECHA),
       },
-      {
+      { 
         title: 'Nombre',
         dataIndex: 'NOMBRE',
         key: 'NOMBRE',
